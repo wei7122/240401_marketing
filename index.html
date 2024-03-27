@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- ============== 輪播css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/swiper.min.css" />
+  <!-- ============== 共用css ============== -->
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/animate.min.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/generate_v1.5.7.css" />
+  <link rel="stylesheet" href="https://media.etmall.com.tw/sp/12500/build.css" />
+
+  <!-- [電梯步驟1] 電梯CSS 不用就關掉 -->
+  <!-- 商品左電梯CSS，要使用還要在步驟2開啟左電梯data資料 -->
+  <!-- <link id="localElevatorLeft" rel="stylesheet" href="sp-elevator-left.css"> -->
+
+  <!-- 商品右電梯CSS，步驟2有測試div可以測試 -->
+  <link id="localElevatorRight" rel="stylesheet" href="sp-elevator-right.css" />
+  <!-- [電梯步驟1] 電梯CSS END -->
+
+  <style>
+    body {
+      background-color: #f1bead;
+      /* width: 100vw; */
+    }
+
+    body:before {
+      background: url(bg-m.jpg) center 0 no-repeat;
+      background-size: 100%;
+      /* width: 100vw; */
+    }
+
+    @media screen and (min-width: 960px) {
+      body:before {
+        background: url(bg.gif) center 0 no-repeat;
+        background-size: auto;
+      }
+    }
+
+    /* 調整logo位置大小 */
+    .logo {
+      top: 0vw;
+      left: 1vw;
+      width: 30%;
+    }
+
+    /* 調整大網logo */
+    @media screen and (min-width:960px) {
+      .logo {
+        top: 0px;
+        left: calc(50% - 480px);
+        width: 30%;
+        max-width: 250px;
+      }
+    }
+
+    /* 動畫小物件 */
+    /*-- 手機版：設定物件距離左邊與上邊的位置，單位可以使用"%"或"vw";width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    .animate__obj--01 {
+      position: absolute;
+      z-index: 1;
+      top: 32vw;
+      left: 5.5%;
+      width: 89%;
+      animation-name: brightness1-play, big;
+      animation-duration: 1.2s, 1.5s;
+      animation-timing-function: linear, ease-in-out;
+      animation-iteration-count: infinite, infinite;
+      pointer-events: none;
+    }
+
+    .animate__obj--02 {
+      position: absolute;
+      z-index: 1;
+      top: 71vw;
+      left: 32%;
+      width: 45%;
+    }
+
+    /*-- 電腦版：設定物件距離左邊與上邊的位置，單位可以使用"px"，左邊可以挑整clac()後面的px值;width:建議電腦版可以使用auto，手機版則可使用%調整 --*/
+    @media screen and (min-width:960px) {
+      .animate__obj--01 {
+        top: 300px;
+        left: calc(50% - 430px);
+        width: auto;
+        animation-name: brightness1-play, big;
+        animation-duration: 1.2s, 1.5s;
+        animation-timing-function: linear, ease-in-out;
+        animation-iteration-count: infinite, infinite;
+        pointer-events: none;
+      }
+    }
+
+    @media screen and (min-width:960px) {
+      .animate__obj--02 {
+        top: 680px;
+        left: calc(50% - 160px);
+        width: auto;
+      }
+    }
+
+    @keyframes brightness1-play {
+
+      0% {
+        filter: brightness(100%);
+      }
+
+      80% {
+        filter: brightness(100%);
+      }
+
+      85% {
+        filter: brightness(150%);
+      }
+
+      90% {
+        filter: brightness(100%);
+      }
+
+      95% {
+        filter: brightness(150%);
+      }
+
+      100% {
+        filter: brightness(100%);
+      }
+    }
+
+    @keyframes big {
+
+      0% {
+        scale: 1;
+      }
+
+      50% {
+        scale: 1.05;
+      }
+
+      100% {
+        scale: 1;
+      }
+    }
+
+
+    /* 打字效果 */
+
+    :root {
+      /* 字符数量 */
+      --steps: 17;
+      /* 动画时间 */
+      --duration: 2s;
+      /* 字体大小 */
+      --fontSize: 48px;
+      /* 光标大小 */
+      --cursorSize: 20px;
+    }
+
+
+    .text {
+      top: 425px;
+      left: calc(50% - 770px);
+      color: #333;
+      ;
+      position: fixed;
+      display: inline-block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: var(--fontSize);
+      line-height: 1;
+      transform: rotate(-90deg);
+    }
+
+    .text::after {
+      content: '';
+      width: var(--cursorSize);
+      height: var(--fontSize);
+      background-color: black;
+      z-index: 2;
+      position: absolute;
+      animation: blink 1s var(--duration) step-end infinite,
+        moveCursor var(--duration) steps(var(--steps)) forwards;
+    }
+
+    .text::before {
+      content: '';
+      width: 100%;
+      height: var(--fontSize);
+      z-index: 1;
+      position: absolute;
+      background: linear-gradient(#f6eed5, #f6eed5) no-repeat top right;
+      animation: showText var(--duration) steps(var(--steps)) forwards;
+    }
+
+
+    .text2 {
+      top: 410px;
+      left: calc(50% - -388px);
+      color: #333;
+      ;
+      position: fixed;
+      display: inline-block;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: var(--fontSize);
+      line-height: 1;
+      transform: rotate(90deg);
+    }
+
+    .text2::after {
+      content: '';
+      width: var(--cursorSize);
+      height: var(--fontSize);
+      background-color: black;
+      z-index: 2;
+      position: absolute;
+      animation: blink 1s var(--duration) step-end infinite,
+        moveCursor var(--duration) steps(var(--steps)) forwards;
+    }
+
+    .text2::before {
+      content: '';
+      width: 100%;
+      height: var(--fontSize);
+      z-index: 1;
+      position: absolute;
+      background: linear-gradient(#f6eed5, #f6eed5) no-repeat top right;
+      animation: showText var(--duration) steps(var(--steps)) forwards;
+    }
+
+
+
+    /* 光标闪烁动画 */
+    @keyframes blink {
+      0% {
+        background-color: rgba(0, 0, 0, 0);
+      }
+
+      50% {
+        background-color: transparent;
+      }
+
+      100% {
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+
+    /* 光标移动动画 */
+    @keyframes moveCursor {
+      0% {
+        left: 0%;
+      }
+
+      100% {
+        left: 100%;
+      }
+    }
+
+    /* 背景移动动画 */
+    @keyframes showText {
+      0% {
+        background-size: 100% 100%;
+      }
+
+      100% {
+        background-size: 0% 100%;
+      }
+    }
+
+     /* --- 浮水印--- */
+     .button {
+      position: fixed;
+      z-index: 30;
+      bottom: 1%;
+      right: 2%;
+      width: 25%;
+    }
+
+    .button .web img {
+      display: none;
+    }
+
+    @media screen and (min-width: 960px) {
+      .button {
+        top: auto;
+        bottom: 5%;
+        left: auto;
+        width: auto;
+      }
+
+      .button .phone img {
+        display: none;
+      }
+
+      .button .web img {
+        display: block;
+      }
+    }
+  </style>
+
+</head>
+
+<body class="bg-fixed">
+
+  <div class="navRightBar" id="navRightBar"></div>
+  <div class="elevatorHome js--main--dialog" id="elevatorHome"></div>
+  <div id="barHome"></div>
+  <div class="home--icon layout--main" id="iconHome"></div>
+
+  <!-- 浮水印 -->
+  <div class="button">
+    <div class="web">
+      <img src="button_web.png" alt="">
+    </div>
+    <div class="phone">
+      <a href="https://etu.tw/WtHo5m">
+        <img src="button_phone.gif" alt="">
+      </a>
+    </div>
+  </div>
+
+
+
+  <div class="sp__wrap" id="spWrap">
+
+    <!-- logo -->
+    <div class="logo">
+      <a href="https://www.etmall.com.tw/">
+        <img src="ehs-logo.png" alt="東森購物">
+      </a>
+    </div>
+
+
+    <!-- 動畫小物件 -->
+    <div class="animate__obj--01 animate__animated"><img src="ani_01.png" alt=""></div>
+    <div class="animate__obj--02 animate__animated"><a href="#"><img src="ani_02.gif" alt=""></a></div>
+
+
+    <!-- 打字效果 -->
+    <div>
+      <p class="text">Welcome To ETmall</p>
+      <p class="text2">New Friend Only</p>
+    </div>
+
+
+
+    <!-- 版頭主視覺 -->
+    <main class="sp__main">
+      <section class="sp__visual">
+        <div class="layout--main">
+          <ul class="visual--auto clearfix">
+            <li class="visual__fragment width--auto"><img src="index_01.gif" alt=""></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_02.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_03.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_04.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><img src="index_05.png" alt=""></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_06.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_07.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_08.png" alt=""></a></li>
+            <li class="visual__fragment width--auto"><a href="#"><img src="index_09.png" alt=""></a></li>
+          </ul>
+        </div>
+      </section>
+    </main>
+  </div>
+
+
+
+
+
+
+  <!-- ============== 共用JS ============== -->
+  <script src="https://media.etmall.com.tw/sp/12500/jquery-3.6.0.min.js"></script>
+  <script src="https://media.etmall.com.tw/sp/12500/swiper.min.js"></script>
+  <script src="https://media.etmall.com.tw/sp/12500/generate_v1.5.7.js"></script>
+  <!--[電梯步驟2] 電梯 JS -->
+  <!-- 商品左電梯單機版資料，不用就關掉，要使用還要上方步驟1開啟商品左電梯CSS -->
+  <!-- <script id="dataElevatorLeft" src="data-elevator.js"></script> -->
+
+  <!-- 線上自動切換電梯，無論如何都要有 -->
+  <script id="checkElevator" src="https://media.etmall.com.tw/sp/11911/check-elevator.js"></script>
+  <!-- [電梯步驟2] 電梯 JS END -->
+
+  <!-- [測試區] -->
+  <!-- 測試商品右電梯用，上線前必須關掉 -->
+  <!-- <div data-title="ccc"></div> -->
+  <!-- 測試霸道電梯用，開啟時上方自動切換電梯要關閉，這支正式上線時需關閉、上方的要開啟回來 -->
+  <!-- <script id="checkElevator" src="https://media.etmall.com.tw/sp/14841/test-elevator.js?87"></script> -->
+
+
+
+
+
+
+
+</body>
+
+</html>
